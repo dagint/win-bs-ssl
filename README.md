@@ -66,6 +66,8 @@ option_settings:
 ```
 
 ### https-lb-sg.config content:
+This file is only needed if you would like to only allow port 443 access to your elb.  If you are planning on putting a redirect from port 80 -> 443 in you application then this config file can be removed.
+
 ```
 Resources:
     ELBSecurityGroup:
