@@ -16,6 +16,7 @@ https-lb-sg.config
 - Update 00-commands.config $bucket, $key, $file with appropriate info
 
 ### 00-commands.config content
+```
 files:
   "c:/ssl.ps1":
     content: |
@@ -40,8 +41,10 @@ commands:
   install_ssl:
     command: PowerShell -ExecutionPolicy Bypass -File "c:/ssl.ps1"
     waitAfterCompletion: 0
+```
 
 ### https-instance-securitygroup.config content:
+```
 Resources:
   443inboundfromloadbalancer:
     Type: AWS::EC2::SecurityGroupIngress
@@ -51,16 +54,19 @@ Resources:
       ToPort: 443
       FromPort: 443
       SourceSecurityGroupName: { "Fn::GetAtt": ["AWSEBLoadBalancer", "SourceSecurityGroup.GroupName"] }
+```
 
 ### https-lb-passthrough.config content:
+```
 option_settings:
   aws:elb:listener:443:
     ListenerProtocol: TCP
     InstancePort: 443
     InstanceProtocol: TCP
-
+```
 
 ### https-lb-sg.config content:
+```
 Resources:
     ELBSecurityGroup:
         Type: AWS::EC2::SecurityGroup
@@ -78,3 +84,4 @@ Resources:
                 - Fn::GetAtt:
                     - ELBSecurityGroup
                     - GroupId
+```
