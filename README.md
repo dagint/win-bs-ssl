@@ -13,7 +13,7 @@ https-lb-passthrough.config
 https-lb-sg.config
 
 ## Installing
-- Update 00-commands.config $bucket, $key, $file with appropriate info
+- Update 00-commands.config $bucket, $key, $file and <CERTNAME> with appropriate info
 
 ### 00-commands.config content
 ```
@@ -31,7 +31,7 @@ files:
 
       Import-Module WebAdministration
       Import-PfxCertificate -FilePath $file -CertStoreLocation cert:\localmachine\my -Password $pwd
-      $Cert = dir cert:\localmachine\my | Where-Object {$_.Subject -like "*facepunch.me*" }
+      $Cert = dir cert:\localmachine\my | Where-Object {$_.Subject -like "*<CERTNAME>*" }
       $Thumb = $Cert.Thumbprint.ToString()
       Push-Location IIS:\SslBindings
       New-WebBinding -Name "Default Web Site" -IP "*" -Port 443 -Protocol https
