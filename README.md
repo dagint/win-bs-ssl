@@ -13,7 +13,7 @@ https-lb-passthrough.config
 https-lb-sg.config
 
 ## Installing
-- Update 00-commands.config $bucket, $key, $file and <CERTNAME> with appropriate info
+- Update 00-commands.config $bucket, $key, $file and \<CERTNAME\> with appropriate info
 
 ### 00-commands.config content
 ```
